@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ObservablesComponent } from 'app/core/observables/observables.component';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,21 @@ export class HomeComponent implements OnInit {
 
   parentarr = [];
   childarr = [];
+  
+  @ViewChild("ms")
+  myspan:any;
+
+  @ViewChild("testagain")
+  testagain:any;
+
+  @ViewChild(ObservablesComponent)
+  obsercomp:ObservablesComponent;
+  
   constructor() { }
 
   ngOnInit() {
+  // console.log("test again",this.testagain);
+    console.log("component",this.obsercomp);
     this.parentarr=[
       {
       name:"abc",
@@ -38,4 +51,9 @@ export class HomeComponent implements OnInit {
     this.childarr = parentobj.childQues;
   }
 
+
+  getSpanHtml() {
+
+    return "from fuction: "+(this.myspan.nativeElement.innerHTML);
+   }
 }

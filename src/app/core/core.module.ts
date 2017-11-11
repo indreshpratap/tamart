@@ -7,7 +7,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { ObservablesComponent } from './observables/observables.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent }
+
+  { path: "", redirectTo:"/login",pathMatch:"full" },
+  { path: "home", component: HomeComponent },
+  {path:"login",component:LoginComponent}
 ];
 
 @NgModule({

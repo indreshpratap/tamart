@@ -1,3 +1,23 @@
-<p>
-  login works!
-</p>
+<mat-card class="login">
+  <form #loginform="ngForm" autocomplete="off">
+    <div>
+      <!--two way <input type="text" name="username" [(ngModel)]="user.username"> -->
+      <!-- form controlled <input type="text" name="username" ngModel> -->
+      <input type="text" name="username" [ngModel]="user.username" required>
+    </div>
+    <div>
+      <!--two way <input type="password" name="password" [(ngModel)]="user.password"> -->
+      <!--form controlled <input type="password" name="password" ngModel> -->
+      <input type="password" name="password" [ngModel]="user.password" required pattern="[0-9]+">
+    </div>
+    <button (click)="doLogin(loginform)" [disabled]="loginform.invalid">Login</button>
+  </form>
+
+</mat-card>
+  <pre>
+    Form Valid: {{loginform.valid}}
+  Form data:  {{loginform.value|json}}
+ username: {{user.username}} password: {{user.password}}
+ Username: {{loginform.controls.username.errors|json}}
+ Password: {{loginform.controls.password.errors|json}}
+  </pre>

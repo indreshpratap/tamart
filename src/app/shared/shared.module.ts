@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import {MatToolbarModule,MatIconModule} from '@angular/material'
+import {MatToolbarModule,MatIconModule,MatCardModule} from '@angular/material'
 const IMPORT_EXPORT= [
   CommonModule,
   FormsModule,
   MatToolbarModule,
-  MatIconModule
+  MatIconModule,
+  MatCardModule
 ]
 
 @NgModule({
