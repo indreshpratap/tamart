@@ -7,14 +7,17 @@ import { AppComponent } from './app.component';
 import { CoreModule } from 'app/core/core.module';
 
 import "rxjs/Rx";
+
 @NgModule({
   declarations: [
     AppComponent
+  
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+   
     RouterModule.forRoot([])
   ],
   providers: [],
