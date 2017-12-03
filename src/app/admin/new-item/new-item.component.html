@@ -1,3 +1,58 @@
-<p>
-  new-item works!
-</p>
+<div class="item-form">
+  <h3>Item Registration</h3>
+  <form [formGroup]="itemform" (ngSubmit)="saveForm()">
+    <table>
+      <tbody>
+        <tr>
+          <td>Item Name</td>
+          <td>
+            <input type="text" formControlName="name">
+          {{itemform.get('name').errors?.required}}
+          </td>
+        </tr>
+        <tr>
+          <td>Category</td>
+          <td>
+            <input type="text" formControlName="category">
+          </td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td>
+            <input type="text" formControlName="price">
+            <app-errors [control]="itemform.get('price')"></app-errors>
+          </td>
+        </tr>
+        <tr>
+          <td>Quantity</td>
+          <td>
+            <input type="text" formControlName="qty">
+            <app-errors [control]="itemform.get('qty')"></app-errors>
+          </td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>
+            <textarea formControlName="description" id="" cols="30" rows="10"></textarea> </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center">
+            <button type="submit">Save</button>
+            <button type="button">Cancel</button>
+            | 
+            <button type="button" (click)="toggleForm(true)">Enable</button>
+            <button type="button" (click)="toggleForm(false)">Disable</button>
+            <button type="button" (click)="setValue()">Populate Form</button>
+            <button type="button" (click)="patchValue()">Patch Form</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <pre>
+    Form Valid: {{itemform.valid}}
+    {{ itemform.value | json }}
+  </pre>
+</div>

@@ -1,5 +1,7 @@
 <div *ngIf="control && control.touched && control.errors">
   <span *ngIf="control.errors.required">{{field?field:'Field'}} Required</span>
   <span *ngIf="control.errors.email">Invalid email</span>
+  <span *ngIf="control.errors.digit4only">Max 4 digit is allowed</span>
+  <span *ngIf="control.errors.pincode">Not a valid pincode</span>
   <span *ngIf="control.errors.pattern">Pattern mismatch for {{field?field:'Field'}}</span>
 </div>
