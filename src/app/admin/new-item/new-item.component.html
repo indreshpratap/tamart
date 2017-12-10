@@ -6,8 +6,8 @@
         <tr>
           <td>Item Name</td>
           <td>
-            <input type="text" formControlName="name">
-          {{itemform.get('name').errors?.required}}
+            <input type="text" placeholder="Product Name" formControlName="name">
+            <app-errors [control]="itemform.get('name')"></app-errors>
           </td>
         </tr>
         <tr>
@@ -35,6 +35,13 @@
           <td>
             <textarea formControlName="description" id="" cols="30" rows="10"></textarea> </td>
         </tr>
+        <tr formGroupName="dimension"> 
+            <td>Dimension</td>
+            <td >
+              <input type="text" formControlName="width" id="">
+              <input type="text" formControlName="height" id="">
+             </td>
+          </tr>
         <tr>
           <td colspan="2" class="text-center">
             <button type="submit">Save</button>
@@ -42,6 +49,8 @@
             | 
             <button type="button" (click)="toggleForm(true)">Enable</button>
             <button type="button" (click)="toggleForm(false)">Disable</button>
+            <button type="button" (click)="toggleDimensionGroup(false)">Disable Dimension</button>
+            <button type="button" (click)="toggleDimensionGroup(true)">Enable Dimension</button>
             <button type="button" (click)="setValue()">Populate Form</button>
             <button type="button" (click)="patchValue()">Patch Form</button>
           </td>
@@ -49,6 +58,31 @@
         </tr>
       </tbody>
     </table>
+    <div class="container">
+      <hr>
+      <h4>Detailed Description</h4>
+      <button type="button" class="btn" (click)="addDetailItem()">Add Detail Item</button>
+      <div class="columns">
+        <div class="column col-3"> <b>Label</b></div>
+        <div class="column col-8"> <b>Description</b> </div>
+      </div>
+      <div formArrayName="details">
+        <div class="columns form-group" *ngFor="let item of detailsArray.controls;let i=index" [formGroupName]="i">
+            <div class="column col-3">
+               <input placeholder="Label" type="text" class="form-input" formControlName="label">
+               <app-errors [control]="item.get('label')"></app-errors>
+              </div>
+            <div class="column col-8">
+               <input placeholder="Detailed Description" type="text"  class="form-input" formControlName="description">
+               <app-errors [control]="item.get('description')"></app-errors>
+               </div>
+            <div class="column col-1">
+              <button class="btn btn-error btn-sm" type="button" (click)="removeDetailItem(i)">x</button>
+            </div>
+        </div>
+      </div>
+
+    </div>
   </form>
 
   <pre>

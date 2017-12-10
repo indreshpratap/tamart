@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { digit4Only, pincode } from 'app/utils/constraints';
 
 @Component({
@@ -20,11 +20,12 @@ export class NewItemComponent implements OnInit {
 
   prepareForm() {
     this.itemform = new FormGroup({
-      "name": new FormControl("Ford Echo sport", Validators.required),
+      "name": new FormControl("Ford Echo sport", [Validators.required]),
       "category": new FormControl("Car"),
-      "price": new FormControl(0, [Validators.pattern(/^\d{4}$/)]),
+      "price": new FormControl(0, [Validators.pattern(/^\d{4{1,6}}$/)]),
       "qty": new FormControl(1, [digit4Only]),
-      "description": new FormControl()
+      "description": new FormControl(),
+      "details": new FormArray([])
     });
   }
 
@@ -34,8 +35,31 @@ export class NewItemComponent implements OnInit {
       "category": ["Car"],
       "price": [0, [Validators.pattern(/^\d{4}$/)]],
       "qty": [1, [digit4Only]],
-      "description": []
+      "description": [],
+      "dimension": this.fb.group({
+        "width": [],
+        "height": []
+      }),
+      "details": this.fb.array([])
     });
+  }
+
+  get detailsArray() {
+    return (this.itemform.get('details') as FormArray);
+  }
+
+  addDetailItem() {
+    let item = this.fb.group({
+      "label": ['', Validators.required],
+      "description": ['', Validators.required]
+    });
+    this.detailsArray.push(item);
+    console.log(this.detailsArray);
+  }
+  removeDetailItem(indx) {
+    if(window.confirm("Are you sure to remove?")){
+      this.detailsArray.removeAt(indx);
+    }
   }
 
   toggleForm(flag) {
@@ -46,6 +70,16 @@ export class NewItemComponent implements OnInit {
       this.itemform.disable();
     }
   }
+  toggleDimensionGroup(flag) {
+    if (flag) {
+      this.itemform.get('dimension').enable();
+
+    } else {
+      this.itemform.get('dimension').disable();
+    }
+  }
+
+
 
 
   setValue() {
