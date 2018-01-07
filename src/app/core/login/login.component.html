@@ -13,7 +13,7 @@
       <!--form controlled <input type="password" name="password" ngModel> -->
       <input type="password" name="password" [ngModel]="user.password" required pattern="[0-9]+">
     </div>
-    <button (click)="doLogin(loginform)" [disabled]="loginform.invalid">Login</button>
+    <button (click)="doLogin(loginform)" class="btn btn-primary" [disabled]="loginform.invalid">Login</button>
   </form>
 
 </mat-card>

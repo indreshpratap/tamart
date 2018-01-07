@@ -13,6 +13,7 @@ export class ErrorsComponent implements OnInit {
 
   @Input()
   field:string;
+
   constructor() { }
 
   ngOnInit() {

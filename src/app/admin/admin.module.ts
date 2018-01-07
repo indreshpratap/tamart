@@ -3,24 +3,29 @@ import { CommonModule } from '@angular/common';
 import { NewItemComponent } from './new-item/new-item.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
+import { AdminComponent } from 'app/admin/admin.component';
 
-const routes: Routes = [
-   { path: 'new-item', component: NewItemComponent }
-  
+const adminRoutes: Routes = [
+  {
+    path: "admin", component: AdminComponent,
+    children: [
+      { path: 'new-item', component: NewItemComponent }]
+  }
+
 
 ];
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(adminRoutes)
   ],
-  declarations: [NewItemComponent]
+  declarations: [AdminComponent, NewItemComponent]
 })
-export class AdminModule { 
-  count:number = 10;
+export class AdminModule {
+  count: number = 10;
 
   inc() {
     this.count++;
-       
+
   }
 }

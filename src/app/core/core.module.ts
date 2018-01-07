@@ -6,27 +6,21 @@ import { SharedModule } from 'app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ObservablesComponent } from './observables/observables.component';
 
-import { AdminModule } from 'app/admin/admin.module';
+
 import { LoginComponent } from 'app/core/login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  // { path: "", redirectTo: "/", pathMatch: "full" },
-  {
-    path: "home", component: HomeComponent, children: [
-      { path: "admin", loadChildren: "../admin/admin.module#AdminModule" }
-    ]
-  },
-  {
-    path: "", component: LoginComponent,
-  }
+  { path: "home", component: HomeComponent },
+  { path: "", component: LoginComponent },
+  {path:"404",component:PageNotFoundComponent}
 ];
 
 @NgModule({
   imports: [
     SharedModule,
-    // AdminModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginComponent, HomeComponent, ObservablesComponent]
+  declarations: [LoginComponent, HomeComponent, ObservablesComponent, PageNotFoundComponent]
 })
 export class CoreModule { }

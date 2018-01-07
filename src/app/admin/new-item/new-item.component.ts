@@ -21,8 +21,8 @@ export class NewItemComponent implements OnInit {
   prepareForm() {
     this.itemform = new FormGroup({
       "name": new FormControl("Ford Echo sport", [Validators.required]),
-      "category": new FormControl("Car"),
-      "price": new FormControl(0, [Validators.pattern(/^\d{4{1,6}}$/)]),
+      "category": new FormControl("Car",[Validators.required]),
+      "price": new FormControl(0, [Validators.pattern(/^\d{1,6}$/)]),
       "qty": new FormControl(1, [digit4Only]),
       "description": new FormControl(),
       "details": new FormArray([])
@@ -54,7 +54,7 @@ export class NewItemComponent implements OnInit {
       "description": ['', Validators.required]
     });
     this.detailsArray.push(item);
-    console.log(this.detailsArray);
+    // console.log(this.detailsArray);
   }
   removeDetailItem(indx) {
     if(window.confirm("Are you sure to remove?")){
