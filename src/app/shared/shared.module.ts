@@ -5,6 +5,7 @@ import { ErrorsComponent } from './errors/errors.component';
 import { MatToolbarModule, MatIconModule, MatCardModule, MatMenuModule, MatButtonModule } from '@angular/material';
 import { HeaderComponent } from './layout/header/header.component'
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 const IMPORT_EXPORT = [
   CommonModule,
   FormsModule,
@@ -14,7 +15,8 @@ const IMPORT_EXPORT = [
   MatCardModule,
   MatMenuModule,
   MatButtonModule,
-  RouterModule
+  RouterModule,
+  HttpClientModule
 ];
 
 const EXPORTED_COMPONENTS = [ErrorsComponent,HeaderComponent];
